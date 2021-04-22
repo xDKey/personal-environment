@@ -1,7 +1,9 @@
-const users = async (parent, args, { prisma }) => {
-  return prisma.user.findMany()
+const user = async (parent, args, { userId, prisma }) => {
+  return prisma.user.findUnique({
+    where: { id: userId },
+  })
 }
 
 module.exports = {
-    users
+  user,
 }
