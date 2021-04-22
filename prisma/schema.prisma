@@ -16,7 +16,8 @@ model User {
   email    String   @unique
   password String
   Notes    Note[]
-  Profile  Profile?
+  bio      String?
+  age      Int?
 }
 
 model Note {
@@ -26,12 +27,4 @@ model Note {
   description String?
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
-}
-
-model Profile {
-  id     Int      @id @default(autoincrement())
-  bio    String?
-  age    DateTime
-  user   User     @relation(fields: [userId], references: [id])
-  userId Int
 }
