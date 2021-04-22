@@ -9,9 +9,7 @@ const User = require('./resolvers/User')
 const resolvers = {
   Query,
   Mutation,
-  User: {
-    notes: (parent, args, {prisma}) => prisma.user.findUnique({where: {id: parent.id}}).notes()
-  }
+  User
 }
 
 const prisma = new PrismaClient()
