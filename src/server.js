@@ -4,10 +4,14 @@ const { typeDefs } = require('./schema')
 const { getUserId } = require('./utils')
 const Mutation = require('./resolvers/Mutation')
 const Query = require('./resolvers/Query')
+const User = require('./resolvers/User')
 
 const resolvers = {
   Query,
-  Mutation
+  Mutation,
+  User: {
+    notes: (parent, args, {prisma}) => prisma.user.findUnique({where: {id: parent.id}}).notes()
+  }
 }
 
 const prisma = new PrismaClient()

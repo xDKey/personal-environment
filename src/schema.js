@@ -6,7 +6,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     password: String!
-    notes: [Note]
+    notes: [Note!]!
     bio: String
     age: Int
   }
