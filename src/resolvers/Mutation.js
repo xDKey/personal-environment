@@ -29,6 +29,13 @@ const addNote = async (parent, args, { userId, prisma }) => {
   })
 }
 
+const deleteNote = async (parent, { id }, { userId, prisma }) => {
+  if (!userId) throw new Error('Not authenticated')
+  return await prisma.note.delete({
+    where: { id: +id },
+  })
+}
+
 const editUser = async (parent, args, { userId, prisma }) => {
   return await prisma.user.update({
     where: { id: userId },
@@ -40,5 +47,6 @@ module.exports = {
   signup,
   login,
   addNote,
+  deleteNote,
   editUser,
 }
