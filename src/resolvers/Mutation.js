@@ -29,8 +29,16 @@ const addNote = async (parent, args, { userId, prisma }) => {
   })
 }
 
+const editUser = async (parent, args, { userId, prisma }) => {
+  return await prisma.user.update({
+    where: { id: userId },
+    data: { ...args },
+  })
+}
+
 module.exports = {
   signup,
   login,
   addNote,
+  editUser,
 }

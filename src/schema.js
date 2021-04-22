@@ -26,7 +26,7 @@ const typeDefs = gql`
     signup(name: String!, email: String!, password: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
     addNote(title: String!, description: String): Note
-    editUser(bio: String, age: Int): User
+    editUser(name: String, bio: String, age: Int): User
   }
 
   type AuthPayload {
