@@ -1,4 +1,4 @@
-const { APP_SECRET } = require('./utils')
+const { APP_SECRET } = require('../utils')
 const { hash, compare } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
 
