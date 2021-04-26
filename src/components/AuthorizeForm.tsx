@@ -1,16 +1,44 @@
 import { FormEvent, useState } from 'react'
+import { useMutation } from 'react-relay'
 import styled from 'styled-components'
 import { StyledButton, StyledInputText } from './StyledComponents'
+import { LoginUserMutation } from './mutations/LoginUserMutation'
+import { SignupUserMutation } from './mutations/SignupUserMutation'
+
+const useConditionalHook = (isNewUser: boolean) => {
+  const [commitLogin] = useMutation(LoginUserMutation())
+  const [commitSignup] = useMutation(SignupUserMutation())
+
+  return isNewUser ? commitSignup : commitLogin
+}
 
 const AuthorizeForm = () => {
+  const [isNewUser, setIsNewUser] = useState(false)
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [nameValue, setNameValue] = useState('')
-  const [isNewUser, setIsNewUser] = useState(false)
-
+  const [isAuthorized, setIsAuthorized] = useState(false)
+  const commit = useConditionalHook(isNewUser)
+  
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    console.log('submit')
+    commit({
+      variables: {
+        name: nameValue,
+        email: emailValue,
+        password: passwordValue,
+      },
+      onCompleted(data: any) {
+        let response
+        if (isNewUser) response = data.signup
+        if (!isNewUser) response = data.login
+        if (response) {
+          localStorage.setItem('token', response.token)
+          localStorage.setItem('userName', response.user.name)
+          setIsAuthorized(true)
+        }
+      },
+    })
   }
 
   const nameInput = isNewUser && (
@@ -24,7 +52,7 @@ const AuthorizeForm = () => {
   )
 
   const Title = () => {
-    const [firstSpan, secondSpan] = isNewUser
+    const [firstSpan, secondSpan] = !isNewUser
       ? ['log in', 'register']
       : ['register', 'log in']
     return (
@@ -37,6 +65,7 @@ const AuthorizeForm = () => {
       </h1>
     )
   }
+  if (isAuthorized) return <h1>Hello, {localStorage.getItem('userName')}</h1>
 
   return (
     <>
