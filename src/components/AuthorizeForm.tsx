@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import { useMutation } from 'react-relay'
 import styled from 'styled-components'
 import { StyledButton, StyledInputText } from './StyledComponents'
@@ -13,14 +13,18 @@ const useConditionalHook = (isNewUser: boolean) => {
   return isNewUser ? commitSignup : commitLogin
 }
 
-const AuthorizeForm = () => {
+type Props = {
+  setIsLogged: Dispatch<SetStateAction<any>>
+}
+
+const AuthorizeForm = ({ setIsLogged }: Props) => {
   const history = useHistory()
   const [isNewUser, setIsNewUser] = useState(false)
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [nameValue, setNameValue] = useState('')
   const commit = useConditionalHook(isNewUser)
-  
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     commit({
@@ -35,7 +39,7 @@ const AuthorizeForm = () => {
         if (!isNewUser) response = data.login
         if (response) {
           localStorage.setItem('token', response.token)
-          localStorage.setItem('userName', response.user.name)
+          setIsLogged(true)
           history.replace('/')
         }
       },

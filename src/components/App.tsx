@@ -6,20 +6,21 @@ import Header from './Header'
 import HomePage from './HomePage'
 
 const App = () => {
-  const [token, setToken] = useState('')
+  const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() => {
     const localToken: string | null = localStorage.getItem('token')
-    if (localToken) setToken(localToken)
+    if (localToken) setIsLogged(true)
+    if (!localToken) setIsLogged(false)
   }, [])
 
   return (
     <BrowserRouter>
       <Root>
-        <Header token={token} />
+        <Header isLogged={isLogged} setIsLogged={setIsLogged}/>
         <Route exact path='/' component={HomePage} />
         <Route path='/login'>
-          <AuthorizeForm />
+          <AuthorizeForm setIsLogged={setIsLogged} />
         </Route>
       </Root>
     </BrowserRouter>
