@@ -1,5 +1,5 @@
 import { graphql } from 'babel-plugin-relay/macro'
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import { usePreloadedQuery, useQueryLoader } from 'react-relay'
 import DisplayUserInfo from './DisplayUserInfo'
 import EditUserInfo from './EditUserInfo'
@@ -27,10 +27,14 @@ const HomePageWrapper = () => {
     if (token) loadQuery({})
   }, [loadQuery, token])
 
+  const refresh = useCallback(() => {
+    loadQuery({}, { fetchPolicy: 'network-only' })
+  }, [loadQuery])
+
   return (
     <Suspense fallback='Loading...'>
       {queryReference ? (
-        <HomePage queryReference={queryReference} />
+        <HomePage queryReference={queryReference} refresh={refresh} />
       ) : (
         <h1>Please, log in</h1>
       )}
@@ -38,7 +42,13 @@ const HomePageWrapper = () => {
   )
 }
 
-const HomePage = ({ queryReference }: { queryReference: any }) => {
+const HomePage = ({
+  queryReference,
+  refresh,
+}: {
+  queryReference: any
+  refresh: any
+}) => {
   const [isEditing, setIsEditing] = useState(false)
 
   const data = usePreloadedQuery<QueryType>(
@@ -46,12 +56,16 @@ const HomePage = ({ queryReference }: { queryReference: any }) => {
     queryReference
   )
 
-  const handleClick = () => {
-    setIsEditing(!isEditing)
+  useEffect(() => {
+    refresh()
+  }, [isEditing, refresh])
+
+  const handleEditChange = (edit?: boolean) => {
+    setIsEditing(edit || false)
   }
 
   const renderedFields = isEditing ? (
-    <EditUserInfo data={data} />
+    <EditUserInfo data={data} setIsEditing={handleEditChange} />
   ) : (
     <DisplayUserInfo data={data} />
   )
@@ -59,9 +73,11 @@ const HomePage = ({ queryReference }: { queryReference: any }) => {
   return (
     <>
       {renderedFields}
-      <StyledButton onClick={handleClick}>
-        {isEditing ? 'Save changes' : 'Edit Information'}
-      </StyledButton>
+      {!isEditing && (
+        <StyledButton onClick={() => setIsEditing(!isEditing)}>
+          Edit Information
+        </StyledButton>
+      )}
     </>
   )
 }

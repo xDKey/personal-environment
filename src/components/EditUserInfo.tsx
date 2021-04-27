@@ -1,26 +1,47 @@
 import { useState } from 'react'
+import { useMutation } from 'react-relay'
 import styled from 'styled-components'
-import { StyledField, StyledInputText } from './StyledComponents'
-import type { HomePageUserInfoQueryResponse as UserType } from './__generated__/HomePageUserInfoQuery.graphql'
+import { StyledButton, StyledField, StyledInputText } from './StyledComponents'
+import { EditUserMutation } from './mutations/EditUserMutation'
+import type { HomePageUserInfoQueryResponse as UserQueryType } from './__generated__/HomePageUserInfoQuery.graphql'
 
-
-const EditUserInfo = ({ data }: { data: UserType }) => {
+const EditUserInfo = ({
+  data,
+  setIsEditing,
+}: {
+  data: UserQueryType
+  setIsEditing: (edit?: boolean) => void
+}) => {
   const { user } = data
   const [nameValue, setNameValue] = useState(user.name)
   const [ageValue, setAgeValue] = useState(user.age)
   const [bioValue, setBioValue] = useState(user.bio)
+  const [commit] = useMutation(EditUserMutation())
+
+  const handleClick = () => {
+    commit({
+      variables: {
+        name: nameValue,
+        age: ageValue,
+        bio: bioValue,
+      },
+      onCompleted(data: any) {
+        if (data.editUser?.id) setIsEditing(false)
+      },
+    })
+  }
 
   return (
     <>
       <StyledField>
-        <span>Name:</span>{' '}
+        <span>Name:</span>
         <StyledInputText
           onChange={(e) => setNameValue(e.target.value)}
           value={nameValue}
         />
       </StyledField>
       <StyledField>
-        <span>Age:</span>{' '}
+        <span>Age:</span>
         <StyledInputText
           type='number'
           onChange={(e) => setAgeValue(+e.target.value)}
@@ -38,6 +59,7 @@ const EditUserInfo = ({ data }: { data: UserType }) => {
           rows={5}
         />
       </StyledField>
+      <StyledButton onClick={handleClick}>Save changes</StyledButton>
     </>
   )
 }
