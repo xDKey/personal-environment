@@ -46,8 +46,8 @@ const HomePage = ({
   queryReference,
   refresh,
 }: {
-  queryReference: any
-  refresh: any
+  queryReference: any,
+  refresh: () => void
 }) => {
   const [isEditing, setIsEditing] = useState(false)
 
