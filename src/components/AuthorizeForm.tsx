@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { StyledButton, StyledInputText } from './StyledComponents'
 import { LoginUserMutation } from './mutations/LoginUserMutation'
 import { SignupUserMutation } from './mutations/SignupUserMutation'
+import { useHistory } from 'react-router'
 
 const useConditionalHook = (isNewUser: boolean) => {
   const [commitLogin] = useMutation(LoginUserMutation())
@@ -13,11 +14,11 @@ const useConditionalHook = (isNewUser: boolean) => {
 }
 
 const AuthorizeForm = () => {
+  const history = useHistory()
   const [isNewUser, setIsNewUser] = useState(false)
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [nameValue, setNameValue] = useState('')
-  const [isAuthorized, setIsAuthorized] = useState(false)
   const commit = useConditionalHook(isNewUser)
   
   const handleSubmit = (event: FormEvent) => {
@@ -35,7 +36,7 @@ const AuthorizeForm = () => {
         if (response) {
           localStorage.setItem('token', response.token)
           localStorage.setItem('userName', response.user.name)
-          setIsAuthorized(true)
+          history.replace('/')
         }
       },
     })
@@ -65,7 +66,6 @@ const AuthorizeForm = () => {
       </h1>
     )
   }
-  if (isAuthorized) return <h1>Hello, {localStorage.getItem('userName')}</h1>
 
   return (
     <>
