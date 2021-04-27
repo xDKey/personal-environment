@@ -29,6 +29,9 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   background: rgba(0, 255, 255, 0.15);
+  h1{
+    text-align: center;
+  }
 `
 
 const StyledNav = styled.nav`

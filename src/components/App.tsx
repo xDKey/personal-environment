@@ -17,9 +17,9 @@ const App = () => {
     <BrowserRouter>
       <Root>
         <Header token={token} />
-        <Route exact path='/' component={HomePage}/>
+        <Route exact path='/' component={HomePage} />
         <Route path='/login'>
-          <AuthorizeForm  />
+          <AuthorizeForm />
         </Route>
       </Root>
     </BrowserRouter>
@@ -27,12 +27,14 @@ const App = () => {
 }
 
 const Root = styled.main`
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid red;
+  @media (min-width: 826px) {
+    width: 60%;
+  }
 `
 
 export default App
