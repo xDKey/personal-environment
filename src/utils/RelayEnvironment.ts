@@ -14,6 +14,7 @@ export const fetchQuery = async (
   const response = await fetch('http://localhost:4000/', {
     method: 'POST',
     headers: {
+      'Authorization': `${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
