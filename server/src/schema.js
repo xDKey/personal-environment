@@ -16,10 +16,12 @@ const typeDefs = gql`
     title: String!
     description: String
     user: User
+    userId: ID!
   }
 
   type Query {
     user: User!
+    notes: [Note!]!
   }
 
   type Mutation {
