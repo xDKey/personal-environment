@@ -36,11 +36,13 @@ const deleteNote = async (parent, { id }, { userId, prisma }) => {
   })
 }
 
-const editUser = async (parent, args, { userId, prisma }) => {
-  return await prisma.user.update({
+const editUser = async (parent, args, { userId, prisma, pubsub }) => {
+  const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: { ...args },
   })
+  pubsub.publish('UPDATE_USER', updatedUser)
+  return updatedUser
 }
 
 module.exports = {

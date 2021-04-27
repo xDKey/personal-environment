@@ -30,6 +30,10 @@ const typeDefs = gql`
     editUser(name: String, bio: String, age: Int): User
   }
 
+  type Subscription {
+    updatedUser: User
+  }
+
   type AuthPayload {
     token: String
     user: User
