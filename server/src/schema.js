@@ -32,6 +32,7 @@ const typeDefs = gql`
 
   type Subscription {
     updatedUser: User
+    changedNotes: Note
   }
 
   type AuthPayload {

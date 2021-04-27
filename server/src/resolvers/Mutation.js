@@ -23,17 +23,22 @@ const login = async (parent, args, { prisma }) => {
   return { token, user }
 }
 
-const addNote = async (parent, args, { userId, prisma }) => {
-  return await prisma.note.create({
+const addNote = async (parent, args, { userId, prisma, pubsub }) => {
+  const newNote = await prisma.note.create({
     data: { ...args, user: { connect: { id: userId } } },
   })
+  pubsub.publish('CHANGE_NOTES', newNote)
+  return newNote
 }
 
-const deleteNote = async (parent, { id }, { userId, prisma }) => {
+const deleteNote = async (parent, { id }, { userId, prisma, pubsub }) => {
   if (!userId) throw new Error('Not authenticated')
-  return await prisma.note.delete({
+
+  const deletedNote = await prisma.note.delete({
     where: { id: +id },
   })
+  pubsub.publish('CHANGE_NOTES', deletedNote)
+  return deletedNote
 }
 
 const editUser = async (parent, args, { userId, prisma, pubsub }) => {
