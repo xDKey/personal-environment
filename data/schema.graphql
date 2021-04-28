@@ -13,10 +13,12 @@ type Note {
   title: String!
   description: String
   user: User
+  userId: ID!
 }
 
 type Query {
   user: User!
+  notes: [Note!]!
 }
 
 type Mutation {
@@ -25,6 +27,11 @@ type Mutation {
   addNote(title: String!, description: String): Note
   deleteNote(id: ID!): Note
   editUser(name: String, bio: String, age: Int): User
+}
+
+type Subscription {
+  updatedUser: User
+  changedNotes: Note
 }
 
 type AuthPayload {
