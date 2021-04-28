@@ -14,6 +14,7 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [nameValue, setNameValue] = useState('')
+  const [showIsInvalid, setShowIsInvalid] = useState(false)
 
   const commit = useConditionalMutationHook(isNewUser)
 
@@ -34,6 +35,9 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
           setIsLogged(true)
           history.replace('/')
         }
+        if (!response) {
+          setShowIsInvalid(true)
+        }
       },
     })
   }
@@ -52,13 +56,16 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
     const [firstSpan, secondSpan] = !isNewUser
       ? ['log in', 'register']
       : ['register', 'log in']
+
+    const handleClick = () => {
+      setIsNewUser(!isNewUser)
+      setShowIsInvalid(false)
+    }
+
     return (
       <h1>
         Please {firstSpan} or
-        <ChangeToNewcomer onClick={() => setIsNewUser(!isNewUser)}>
-          {' '}
-          {secondSpan}
-        </ChangeToNewcomer>
+        <ChangeToNewcomer onClick={handleClick}> {secondSpan}</ChangeToNewcomer>
       </h1>
     )
   }
@@ -66,6 +73,9 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
   return (
     <>
       <Title />
+      {showIsInvalid && (
+        <Error>Such user not found or password is invalid</Error>
+      )}
       <StyledForm onSubmit={handleSubmit}>
         {nameInput}
         <StyledInputText
@@ -96,6 +106,10 @@ const ChangeToNewcomer = styled.span`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+`
+
+const Error = styled.h2`
+  color: red;
 `
 
 export default AuthorizeForm
