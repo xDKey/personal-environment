@@ -92,7 +92,7 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
           placeholder='Enter your password'
           required={true}
         />
-        <StyledButton type='submit'>Autorize</StyledButton>
+        <StyledButton type='submit'>Authorize</StyledButton>
       </StyledForm>
     </>
   )
