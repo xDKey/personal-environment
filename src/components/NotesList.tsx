@@ -52,9 +52,13 @@ const NotesList = ({
     refresh()
   }, [showAddNote, refresh])
 
-  const renderedNotes = !notes.length
-    ? 'No notes'
-    : notes.map((note) => <NoteItem key={note.id} {...note} />)
+  const renderedNotes = !notes.length ? (
+    <h1>No Notes</h1>
+  ) : (
+    notes.map((note) => (
+      <NoteItem key={note.id} {...note} refreshQuery={refresh} />
+    ))
+  )
 
   return (
     <>
