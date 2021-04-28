@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import AuthorizeForm from './AuthorizeForm'
 import Header from './Header'
 import HomePage from './HomePage'
+import NotesList from './NotesList'
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false)
@@ -17,7 +18,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Root>
-        <Header isLogged={isLogged} setIsLogged={setIsLogged}/>
+        <Header isLogged={isLogged} setIsLogged={setIsLogged} />
+        <Route path='/notes' component={NotesList} />
         <Route exact path='/' component={HomePage} />
         <Route path='/login'>
           <AuthorizeForm setIsLogged={setIsLogged} />
