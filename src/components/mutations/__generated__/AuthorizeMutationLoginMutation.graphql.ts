@@ -3,13 +3,12 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type SignupUserMutationVariables = {
-    name: string;
+export type AuthorizeMutationLoginMutationVariables = {
     email: string;
     password: string;
 };
-export type SignupUserMutationResponse = {
-    readonly signup: {
+export type AuthorizeMutationLoginMutationResponse = {
+    readonly login: {
         readonly token: string | null;
         readonly user: {
             readonly name: string;
@@ -17,20 +16,19 @@ export type SignupUserMutationResponse = {
         } | null;
     } | null;
 };
-export type SignupUserMutation = {
-    readonly response: SignupUserMutationResponse;
-    readonly variables: SignupUserMutationVariables;
+export type AuthorizeMutationLoginMutation = {
+    readonly response: AuthorizeMutationLoginMutationResponse;
+    readonly variables: AuthorizeMutationLoginMutationVariables;
 };
 
 
 
 /*
-mutation SignupUserMutation(
-  $name: String!
+mutation AuthorizeMutationLoginMutation(
   $email: String!
   $password: String!
 ) {
-  signup(name: $name, email: $email, password: $password) {
+  login(email: $email, password: $password) {
     token
     user {
       name
@@ -41,22 +39,19 @@ mutation SignupUserMutation(
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "email"
-},
-v1 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "name"
-},
-v2 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "password"
-},
-v3 = [
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "email"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "password"
+  }
+],
+v1 = [
   {
     "alias": null,
     "args": [
@@ -67,18 +62,13 @@ v3 = [
       },
       {
         "kind": "Variable",
-        "name": "name",
-        "variableName": "name"
-      },
-      {
-        "kind": "Variable",
         "name": "password",
         "variableName": "password"
       }
     ],
     "concreteType": "AuthPayload",
     "kind": "LinkedField",
-    "name": "signup",
+    "name": "login",
     "plural": false,
     "selections": [
       {
@@ -119,38 +109,30 @@ v3 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/),
-      (v2/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignupUserMutation",
-    "selections": (v3/*: any*/),
+    "name": "AuthorizeMutationLoginMutation",
+    "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/),
-      (v2/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SignupUserMutation",
-    "selections": (v3/*: any*/)
+    "name": "AuthorizeMutationLoginMutation",
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "99f11408ecbec2df8e8e5da564c9c7d2",
+    "cacheID": "82ccae1a218da508c7ca7bcba11e9258",
     "id": null,
     "metadata": {},
-    "name": "SignupUserMutation",
+    "name": "AuthorizeMutationLoginMutation",
     "operationKind": "mutation",
-    "text": "mutation SignupUserMutation(\n  $name: String!\n  $email: String!\n  $password: String!\n) {\n  signup(name: $name, email: $email, password: $password) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n"
+    "text": "mutation AuthorizeMutationLoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '1d4db3ee86f910c9afbba99c33f8903f';
+(node as any).hash = 'fece15f025d49673d49b0e2a2ec3f6fc';
 export default node;

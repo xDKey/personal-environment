@@ -1,17 +1,8 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
-import { useMutation } from 'react-relay'
 import styled from 'styled-components'
 import { StyledButton, StyledInputText } from './StyledComponents'
-import { LoginUserMutation } from './mutations/LoginUserMutation'
-import { SignupUserMutation } from './mutations/SignupUserMutation'
 import { useHistory } from 'react-router'
-
-const useConditionalHook = (isNewUser: boolean) => {
-  const [commitLogin] = useMutation(LoginUserMutation())
-  const [commitSignup] = useMutation(SignupUserMutation())
-
-  return isNewUser ? commitSignup : commitLogin
-}
+import { useConditionalMutationHook } from './mutations/AuthorizeMutation'
 
 type Props = {
   setIsLogged: Dispatch<SetStateAction<any>>
@@ -23,7 +14,8 @@ const AuthorizeForm = ({ setIsLogged }: Props) => {
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [nameValue, setNameValue] = useState('')
-  const commit = useConditionalHook(isNewUser)
+
+  const commit = useConditionalMutationHook(isNewUser)
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
