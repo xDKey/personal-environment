@@ -7,7 +7,7 @@ const getUserId = (req, authToken) => {
   if (!req) throw new Error('Not authenticated')
 
   const authHeader = req.headers.authorization
-  if (authHeader) {
+  if (authHeader !== 'null') {
     const { userId } = getTokenPayload(authHeader)
     return userId
   }

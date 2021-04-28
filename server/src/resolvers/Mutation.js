@@ -16,7 +16,7 @@ const login = async (parent, args, { prisma }) => {
   })
   if (!user) throw new Error('No such user found')
 
-  const valid = compare(args.password, user.password)
+  const valid = await compare(args.password, user.password)
   if (!valid) throw new Error('Invalid password!')
 
   const token = sign({ userId: user.id }, APP_SECRET)
