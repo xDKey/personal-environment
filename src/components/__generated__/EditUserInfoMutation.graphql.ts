@@ -3,25 +3,25 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type EditUserMutationVariables = {
+export type EditUserInfoMutationVariables = {
     name?: string | null;
     age?: number | null;
     bio?: string | null;
 };
-export type EditUserMutationResponse = {
+export type EditUserInfoMutationResponse = {
     readonly editUser: {
         readonly id: string;
     } | null;
 };
-export type EditUserMutation = {
-    readonly response: EditUserMutationResponse;
-    readonly variables: EditUserMutationVariables;
+export type EditUserInfoMutation = {
+    readonly response: EditUserInfoMutationResponse;
+    readonly variables: EditUserInfoMutationVariables;
 };
 
 
 
 /*
-mutation EditUserMutation(
+mutation EditUserInfoMutation(
   $name: String
   $age: Int
   $bio: String
@@ -93,7 +93,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "EditUserMutation",
+    "name": "EditUserInfoMutation",
     "selections": (v3/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -106,18 +106,18 @@ return {
       (v1/*: any*/)
     ],
     "kind": "Operation",
-    "name": "EditUserMutation",
+    "name": "EditUserInfoMutation",
     "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "ce1194b162194614dbe150c9fb8a31ab",
+    "cacheID": "953be52a33df1ad5f23bf218be6d1dae",
     "id": null,
     "metadata": {},
-    "name": "EditUserMutation",
+    "name": "EditUserInfoMutation",
     "operationKind": "mutation",
-    "text": "mutation EditUserMutation(\n  $name: String\n  $age: Int\n  $bio: String\n) {\n  editUser(name: $name, age: $age, bio: $bio) {\n    id\n  }\n}\n"
+    "text": "mutation EditUserInfoMutation(\n  $name: String\n  $age: Int\n  $bio: String\n) {\n  editUser(name: $name, age: $age, bio: $bio) {\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '99ddc2658751134e9b211c85e7703e3a';
+(node as any).hash = '79944deb03abc3c07a48e1120488e865';
 export default node;

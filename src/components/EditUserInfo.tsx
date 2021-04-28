@@ -1,10 +1,18 @@
 import { useState } from 'react'
+import { graphql } from 'babel-plugin-relay/macro'
 import { useMutation } from 'react-relay'
 import styled from 'styled-components'
 import { StyledButton, StyledField, StyledInputText } from './StyledComponents'
-import { EditUserMutation } from './mutations/EditUserMutation'
 import type { HomePageUserInfoQueryResponse as UserQueryType } from './__generated__/HomePageUserInfoQuery.graphql'
+import type { EditUserInfoMutation as MutationType } from './__generated__/EditUserInfoMutation.graphql'
 
+const EditUserInfoMutation = graphql`
+  mutation EditUserInfoMutation($name: String, $age: Int, $bio: String) {
+    editUser(name: $name, age: $age, bio: $bio) {
+      id
+    }
+  }
+`
 const EditUserInfo = ({
   data,
   setIsEditing,
@@ -16,7 +24,7 @@ const EditUserInfo = ({
   const [nameValue, setNameValue] = useState(user.name)
   const [ageValue, setAgeValue] = useState(user.age)
   const [bioValue, setBioValue] = useState(user.bio)
-  const [commit] = useMutation(EditUserMutation())
+  const [commit] = useMutation<MutationType>(EditUserInfoMutation)
 
   const handleClick = () => {
     commit({
@@ -25,7 +33,7 @@ const EditUserInfo = ({
         age: ageValue,
         bio: bioValue,
       },
-      onCompleted(data: any) {
+      onCompleted(data) {
         if (data.editUser?.id) setIsEditing(false)
       },
     })
