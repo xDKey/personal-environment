@@ -17,11 +17,12 @@ const NotesListQuery = graphql`
 `
 
 const NotesListWrapper = () => {
+  const token = localStorage.getItem('token')
   const [queryRef, loadQuery] = useQueryLoader(NotesListQuery)
 
   useEffect(() => {
-    loadQuery({})
-  }, [loadQuery])
+    if (token) loadQuery({})
+  }, [loadQuery, token])
 
   const refresh = useCallback(() => {
     loadQuery({}, { fetchPolicy: 'network-only' })
@@ -30,8 +31,10 @@ const NotesListWrapper = () => {
   return (
     <>
       <Suspense fallback='Loading...'>
-        {queryRef !== null && queryRef !== undefined && (
+        {queryRef ? (
           <NotesList queryRef={queryRef} refresh={refresh} />
+        ) : (
+          <h1>Please, log in</h1>
         )}
       </Suspense>
     </>
