@@ -62,7 +62,7 @@ const EditUserInfo = ({
         <span>Biography:</span>
         <StyledTextArea
           onChange={(e) => setBioValue(e.target.value)}
-          value={bioValue || 'unknown'}
+          value={bioValue || ''}
           maxLength={255}
           rows={5}
         />
