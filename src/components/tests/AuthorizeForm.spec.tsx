@@ -3,6 +3,7 @@ import { RelayEnvironmentProvider } from 'react-relay'
 import { BrowserRouter } from 'react-router-dom'
 import RelayEnvironment from '../../utils/RelayEnvironment'
 import AuthorizeForm from '../AuthorizeForm'
+import { SERVER_URL } from './constants'
 
 describe('<AuthorizeForm />', () => {
   beforeEach(() => {
@@ -13,7 +14,7 @@ describe('<AuthorizeForm />', () => {
         </BrowserRouter>
       </RelayEnvironmentProvider>
     )
-    cy.intercept('POST', 'http://localhost:4000/').as('request')
+    cy.intercept('POST', SERVER_URL).as('request')
   })
 
   it('Render correctly', () => {
