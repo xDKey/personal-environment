@@ -2,29 +2,13 @@ import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
 import RelayEnvironment from '../../utils/RelayEnvironment'
 import NotesListWrapper from '../NotesList'
-import { NotesListQueryResponse } from '../__generated__/NotesListQuery.graphql'
-import { SERVER_URL } from './constants'
-
-const mockData: NotesListQueryResponse = {
-  notes: [
-    {
-      id: 'Test ID',
-      title: 'Test Title 1',
-      description: 'Test Description 1',
-    },
-    {
-      id: 'Test ID 2',
-      title: 'Test Title 2',
-      description: 'Test Description 2',
-    },
-  ],
-}
+import { notesDataMock, SERVER_URL } from './constants'
 
 const setUpComponent = (haveToken = false) => {
   if (haveToken) localStorage.setItem('token', 'testtoken')
 
   cy.intercept(SERVER_URL, {
-    data: mockData,
+    data: notesDataMock,
   }).as('fetch')
   mount(
     <RelayEnvironmentProvider environment={RelayEnvironment}>
@@ -42,14 +26,14 @@ it('Render correctly if there is token in localstorage', () => {
   setUpComponent(true)
   cy.get('section')
     .first()
-    .should('include.text', mockData.notes[0].title)
-    .and('include.text', mockData.notes[0].description)
+    .should('include.text', notesDataMock.notes[0].title)
+    .and('include.text', notesDataMock.notes[0].description)
     .and('include.html', 'button')
 
   cy.get('section')
     .last()
-    .should('include.text', mockData.notes[1].title)
-    .and('include.text', mockData.notes[1].description)
+    .should('include.text', notesDataMock.notes[1].title)
+    .and('include.text', notesDataMock.notes[1].description)
     .and('include.html', 'button')
 
   cy.get('button').contains('Add Note').click()
