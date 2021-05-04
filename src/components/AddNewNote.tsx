@@ -1,17 +1,9 @@
-import { graphql } from 'babel-plugin-relay/macro'
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import { useMutation } from 'react-relay'
 import styled from 'styled-components'
+import AddNewNoteMutation from '../gql/mutations/AddNewNoteMutation'
 import { StyledInputText, StyledButton } from './StyledComponents'
-import type { AddNewNoteMutation as MutationType } from './__generated__/AddNewNoteMutation.graphql'
-
-const AddNewNoteMutation = graphql`
-  mutation AddNewNoteMutation($title: String!, $description: String) {
-    addNote(title: $title, description: $description) {
-      id
-    }
-  }
-`
+import type { AddNewNoteMutation as MutationType } from '../gql/mutations/__generated__/AddNewNoteMutation.graphql'
 
 const AddNewNote = ({
   setShowAddNote,

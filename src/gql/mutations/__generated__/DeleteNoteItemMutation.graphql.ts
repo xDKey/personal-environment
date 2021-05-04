@@ -3,23 +3,23 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type NoteItemDeleteMutationVariables = {
+export type DeleteNoteItemMutationVariables = {
     id: string;
 };
-export type NoteItemDeleteMutationResponse = {
+export type DeleteNoteItemMutationResponse = {
     readonly deleteNote: {
         readonly id: string;
     } | null;
 };
-export type NoteItemDeleteMutation = {
-    readonly response: NoteItemDeleteMutationResponse;
-    readonly variables: NoteItemDeleteMutationVariables;
+export type DeleteNoteItemMutation = {
+    readonly response: DeleteNoteItemMutationResponse;
+    readonly variables: DeleteNoteItemMutationVariables;
 };
 
 
 
 /*
-mutation NoteItemDeleteMutation(
+mutation DeleteNoteItemMutation(
   $id: ID!
 ) {
   deleteNote(id: $id) {
@@ -67,7 +67,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "NoteItemDeleteMutation",
+    "name": "DeleteNoteItemMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -76,18 +76,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "NoteItemDeleteMutation",
+    "name": "DeleteNoteItemMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "3012cbde754e385458d99a4a50ea9060",
+    "cacheID": "c46a31d9b007f4167a342d727b1c47bd",
     "id": null,
     "metadata": {},
-    "name": "NoteItemDeleteMutation",
+    "name": "DeleteNoteItemMutation",
     "operationKind": "mutation",
-    "text": "mutation NoteItemDeleteMutation(\n  $id: ID!\n) {\n  deleteNote(id: $id) {\n    id\n  }\n}\n"
+    "text": "mutation DeleteNoteItemMutation(\n  $id: ID!\n) {\n  deleteNote(id: $id) {\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '44db687dedc5a31e06ba19983c674de2';
+(node as any).hash = '643039f6d1860dbee3bb32aadd0eec16';
 export default node;

@@ -1,20 +1,10 @@
-import { graphql } from 'babel-plugin-relay/macro'
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import { usePreloadedQuery, useQueryLoader } from 'react-relay'
+import NotesListQuery from '../gql/query/NotesListQuery'
 import AddNewNote from './AddNewNote'
 import NoteItem from './NoteItem'
 import { StyledButton } from './StyledComponents'
-import { NotesListQuery as QueryType } from './__generated__/NotesListQuery.graphql'
-
-const NotesListQuery = graphql`
-  query NotesListQuery {
-    notes {
-      id
-      title
-      description
-    }
-  }
-`
+import { NotesListQuery as QueryType } from '../gql/query/__generated__/NotesListQuery.graphql'
 
 const NotesListWrapper = () => {
   const token = localStorage.getItem('token')
