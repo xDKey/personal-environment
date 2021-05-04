@@ -6,6 +6,12 @@
   </a>
 </p>
 
+
+SPA for work with local database and with following abilities:
+- Login/register user
+- Change user's information
+- Add and remove user's notes (aka todo list)
+
 ## Install
 
 ```sh
