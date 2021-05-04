@@ -1,7 +1,7 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import EditUserInfo from '../EditUserInfo'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import EditUserInfo from '../components/EditUserInfo'
 import { SERVER_URL, userResponseMock } from './constants'
 
 beforeEach(() => {

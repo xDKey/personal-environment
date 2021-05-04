@@ -1,7 +1,7 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import NotesListWrapper from '../NotesList'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import NotesListWrapper from '../components/NotesList'
 import { notesDataMock, SERVER_URL } from './constants'
 
 const setUpComponent = (haveToken = false) => {

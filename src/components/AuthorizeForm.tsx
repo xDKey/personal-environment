@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import styled from 'styled-components'
 import { StyledButton, StyledInputText } from './StyledComponents'
 import { useHistory } from 'react-router'
-import { useConditionalMutationHook } from './mutations/AuthorizeMutation'
+import { useConditionalMutationHook } from '../gql/mutations/useConditionalMutationHook'
 
 type Props = {
   setIsLogged: Dispatch<SetStateAction<any>>

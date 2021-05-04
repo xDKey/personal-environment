@@ -1,7 +1,7 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import HomePageWrapper from '../HomePage'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import HomePageWrapper from '../components/HomePage'
 import { SERVER_URL, userResponseMock } from './constants'
 
 const setUpComponent = (haveToken: boolean = false) => {

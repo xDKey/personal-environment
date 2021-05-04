@@ -1,27 +1,14 @@
-import { graphql } from 'babel-plugin-relay/macro'
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import { usePreloadedQuery, useQueryLoader } from 'react-relay'
+import UserInfoQuery from '../gql/query/UserInfoQuery'
 import DisplayUserInfo from './DisplayUserInfo'
 import EditUserInfo from './EditUserInfo'
 import { StyledButton } from './StyledComponents'
-
-import type { HomePageUserInfoQuery as QueryType } from './__generated__/HomePageUserInfoQuery.graphql'
-
-const HomePageUserInfoQuery = graphql`
-  query HomePageUserInfoQuery {
-    user {
-      id
-      name
-      email
-      bio
-      age
-    }
-  }
-`
+import type { UserInfoQuery as QueryType } from '../gql/query/__generated__/UserInfoQuery.graphql'
 
 const HomePageWrapper = () => {
   const token = localStorage.getItem('token')
-  const [queryReference, loadQuery] = useQueryLoader(HomePageUserInfoQuery)
+  const [queryReference, loadQuery] = useQueryLoader(UserInfoQuery)
 
   useEffect(() => {
     if (token) loadQuery({})
@@ -46,15 +33,12 @@ const HomePage = ({
   queryReference,
   refresh,
 }: {
-  queryReference: any,
+  queryReference: any
   refresh: () => void
 }) => {
   const [isEditing, setIsEditing] = useState(false)
 
-  const data = usePreloadedQuery<QueryType>(
-    HomePageUserInfoQuery,
-    queryReference
-  )
+  const data = usePreloadedQuery<QueryType>(UserInfoQuery, queryReference)
 
   useEffect(() => {
     refresh()

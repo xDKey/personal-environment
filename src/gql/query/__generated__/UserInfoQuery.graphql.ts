@@ -3,8 +3,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type HomePageUserInfoQueryVariables = {};
-export type HomePageUserInfoQueryResponse = {
+export type UserInfoQueryVariables = {};
+export type UserInfoQueryResponse = {
     readonly user: {
         readonly id: string;
         readonly name: string;
@@ -13,15 +13,15 @@ export type HomePageUserInfoQueryResponse = {
         readonly age: number | null;
     };
 };
-export type HomePageUserInfoQuery = {
-    readonly response: HomePageUserInfoQueryResponse;
-    readonly variables: HomePageUserInfoQueryVariables;
+export type UserInfoQuery = {
+    readonly response: UserInfoQueryResponse;
+    readonly variables: UserInfoQueryVariables;
 };
 
 
 
 /*
-query HomePageUserInfoQuery {
+query UserInfoQuery {
   user {
     id
     name
@@ -86,7 +86,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "HomePageUserInfoQuery",
+    "name": "UserInfoQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -95,18 +95,18 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "HomePageUserInfoQuery",
+    "name": "UserInfoQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "b1355da3b8cc9bad01347fa30536a772",
+    "cacheID": "3cca1cd3f09b5b3d12cb8dacedf63cbe",
     "id": null,
     "metadata": {},
-    "name": "HomePageUserInfoQuery",
+    "name": "UserInfoQuery",
     "operationKind": "query",
-    "text": "query HomePageUserInfoQuery {\n  user {\n    id\n    name\n    email\n    bio\n    age\n  }\n}\n"
+    "text": "query UserInfoQuery {\n  user {\n    id\n    name\n    email\n    bio\n    age\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'c771b50ba349d2159b3c9491ad107305';
+(node as any).hash = '1d2ca3cd7481ca1c519e19dc5d66f3d2';
 export default node;

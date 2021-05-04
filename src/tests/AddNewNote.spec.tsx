@@ -1,7 +1,7 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import AddNewNote from '../AddNewNote'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import AddNewNote from '../components/AddNewNote'
 import { SERVER_URL } from './constants'
 
 beforeEach(() => {

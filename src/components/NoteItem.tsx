@@ -1,15 +1,7 @@
-import { graphql } from 'babel-plugin-relay/macro'
 import { useMutation } from 'react-relay'
 import styled from 'styled-components'
-import type { NoteItemDeleteMutation as MutationType } from './__generated__/NoteItemDeleteMutation.graphql'
-
-const Mutation = graphql`
-  mutation NoteItemDeleteMutation($id: ID!) {
-    deleteNote(id: $id) {
-      id
-    }
-  }
-`
+import DeleteNoteItemMutation from '../gql/mutations/DeleteNoteItemMutation'
+import type { DeleteNoteItemMutation as MutationType } from '../gql/mutations/__generated__/DeleteNoteItemMutation.graphql'
 
 const NoteItem = ({
   id,
@@ -22,7 +14,7 @@ const NoteItem = ({
   title: string
   refreshQuery: () => void
 }) => {
-  const [commit] = useMutation<MutationType>(Mutation)
+  const [commit] = useMutation<MutationType>(DeleteNoteItemMutation)
 
   const hadleClick = () => {
     commit({

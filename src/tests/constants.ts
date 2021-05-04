@@ -1,9 +1,9 @@
-import type { HomePageUserInfoQueryResponse } from '../__generated__/HomePageUserInfoQuery.graphql'
-import { NotesListQueryResponse } from '../__generated__/NotesListQuery.graphql'
+import type { NotesListQueryResponse } from '../gql/query/__generated__/NotesListQuery.graphql'
+import type { UserInfoQueryResponse } from '../gql/query/__generated__/UserInfoQuery.graphql'
 
 export const SERVER_URL = 'http://localhost:4000/'
 
-export const userResponseMock: HomePageUserInfoQueryResponse = {
+export const userResponseMock: UserInfoQueryResponse = {
   user: {
     id: '1',
     name: 'Test Name',
