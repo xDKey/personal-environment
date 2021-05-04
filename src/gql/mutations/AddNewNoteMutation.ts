@@ -4,6 +4,8 @@ const AddNewNoteMutation = graphql`
   mutation AddNewNoteMutation($title: String!, $description: String) {
     addNote(title: $title, description: $description) {
       id
+      title
+      description
     }
   }
 `

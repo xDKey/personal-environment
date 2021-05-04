@@ -7,20 +7,20 @@ const NoteItem = ({
   id,
   description,
   title,
-  refreshQuery,
+  updateCache,
 }: {
   id: string
   description: string | null
   title: string
-  refreshQuery: () => void
+  updateCache: (payload: any) => void
 }) => {
   const [commit] = useMutation<MutationType>(DeleteNoteItemMutation)
 
   const hadleClick = () => {
     commit({
       variables: { id },
-      onCompleted() {
-        refreshQuery()
+      onCompleted(data) {
+        updateCache({ deletedNoteId: data.deleteNote?.id })
       },
     })
   }

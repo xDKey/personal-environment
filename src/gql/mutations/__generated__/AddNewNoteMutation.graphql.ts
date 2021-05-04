@@ -10,6 +10,8 @@ export type AddNewNoteMutationVariables = {
 export type AddNewNoteMutationResponse = {
     readonly addNote: {
         readonly id: string;
+        readonly title: string;
+        readonly description: string | null;
     } | null;
 };
 export type AddNewNoteMutation = {
@@ -26,6 +28,8 @@ mutation AddNewNoteMutation(
 ) {
   addNote(title: $title, description: $description) {
     id
+    title
+    description
   }
 }
 */
@@ -67,6 +71,20 @@ v2 = [
         "kind": "ScalarField",
         "name": "id",
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "title",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "description",
+        "storageKey": null
       }
     ],
     "storageKey": null
@@ -96,14 +114,14 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "2e795df1ea009c69bd8e8ab0edff89e0",
+    "cacheID": "db0892883c5aba37c0bdfce8810360ff",
     "id": null,
     "metadata": {},
     "name": "AddNewNoteMutation",
     "operationKind": "mutation",
-    "text": "mutation AddNewNoteMutation(\n  $title: String!\n  $description: String\n) {\n  addNote(title: $title, description: $description) {\n    id\n  }\n}\n"
+    "text": "mutation AddNewNoteMutation(\n  $title: String!\n  $description: String\n) {\n  addNote(title: $title, description: $description) {\n    id\n    title\n    description\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '74ee0173b1eecb6f024bd0b9c83da6a3';
+(node as any).hash = '4fd0b32d280610d9b85430e5264a38cc';
 export default node;
