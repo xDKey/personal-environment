@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useMutation } from 'react-relay'
 import styled from 'styled-components'
 import { StyledButton, StyledField, StyledInputText } from './StyledComponents'
-import type { HomePageUserInfoQueryResponse as UserQueryType } from './__generated__/HomePageUserInfoQuery.graphql'
-import type { EditUserInfoMutation as MutationType } from './__generated__/EditUserInfoMutation.graphql'
+import type { UserInfoQueryResponse as UserQueryType } from '../gql/query/__generated__/UserInfoQuery.graphql'
+import type { EditUserInfoMutation as MutationType } from '../gql/mutations/__generated__/EditUserInfoMutation.graphql'
 import EditUserInfoMutation from '../gql/mutations/EditUserInfoMutation'
 
 const EditUserInfo = ({

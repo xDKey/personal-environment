@@ -1,7 +1,7 @@
+import { UserInfoQueryResponse } from '../gql/query/__generated__/UserInfoQuery.graphql'
 import { StyledField } from './StyledComponents'
-import type { HomePageUserInfoQueryResponse as UserType } from './__generated__/HomePageUserInfoQuery.graphql'
 
-const DisplayUserInfo = ({ data }: { data: UserType }) => {
+const DisplayUserInfo = ({ data }: { data: UserInfoQueryResponse }) => {
   const { user } = data
   return (
     <>
