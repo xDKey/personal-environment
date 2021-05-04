@@ -1,8 +1,8 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
 import { BrowserRouter } from 'react-router-dom'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import App from '../App'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import App from '../components/App'
 import { notesDataMock, SERVER_URL, userResponseMock } from './constants'
 
 const setUpComponent = (haveToken = false) => {

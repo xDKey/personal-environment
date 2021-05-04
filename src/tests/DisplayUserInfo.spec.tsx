@@ -1,5 +1,5 @@
 import { mount } from '@cypress/react'
-import DisplayUserInfo from '../DisplayUserInfo'
+import DisplayUserInfo from '../components/DisplayUserInfo'
 import { userResponseMock } from './constants'
 
 it('Render correctly', () => {

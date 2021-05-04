@@ -1,8 +1,8 @@
 import { mount } from '@cypress/react'
 import { RelayEnvironmentProvider } from 'react-relay'
 import { BrowserRouter } from 'react-router-dom'
-import RelayEnvironment from '../../utils/RelayEnvironment'
-import AuthorizeForm from '../AuthorizeForm'
+import RelayEnvironment from '../utils/RelayEnvironment'
+import AuthorizeForm from '../components/AuthorizeForm'
 import { SERVER_URL } from './constants'
 
 beforeEach(() => {
