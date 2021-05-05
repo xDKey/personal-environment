@@ -8,8 +8,8 @@
     "start:api": "node server/src/server.js",
     "build": "yarn relay && react-scripts build",
     "relay": "relay-compiler --schema data/schema.graphql --src ./src/ --language typescript",
-    "test": "yarn cypress open-ct",
-    "test:ci": "yarn cypress run-ct",
+    "test": "concurrently \"yarn start:api\" \"yarn cypress open-ct\" ",
+    "test:ci": "concurrently \"yarn start:api\" \"yarn cypress run-ct\" ",
     "eject": "react-scripts eject"
   },
   "dependencies": {
