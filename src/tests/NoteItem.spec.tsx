@@ -8,7 +8,7 @@ const initProps = {
   id: '1',
   title: 'Test title',
   description: 'Test description',
-  refreshQuery: () => {},
+  updateCache: () => {},
 }
 
 beforeEach(() => {
