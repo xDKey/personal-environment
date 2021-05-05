@@ -13,6 +13,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      server-directory: ./server
+
     steps:
       - uses: actions/checkout@v2
 
@@ -20,8 +23,12 @@ jobs:
         working-directory: ./server
         run: yarn
 
+      - name: Run server
+        run: yarn start:api &
+
       - name: Run unit-tests
         uses: cypress-io/github-action@v2
         with:
           install: yarn
-          command: yarn test:ci
+          start: yarn cypress run-ct
+          wait-on: 'http://localhost:4000/'
