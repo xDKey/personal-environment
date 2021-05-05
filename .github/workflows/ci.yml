@@ -13,9 +13,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      server-directory: ./server
-
     steps:
       - uses: actions/checkout@v2
 
@@ -29,6 +26,5 @@ jobs:
       - name: Run unit-tests
         uses: cypress-io/github-action@v2
         with:
-          install: yarn
           command: yarn cypress run-ct
           wait-on: 'http://localhost:4000/'
