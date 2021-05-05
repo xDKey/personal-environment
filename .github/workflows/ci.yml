@@ -24,6 +24,7 @@ jobs:
         run: yarn start:api &
 
       - name: Run unit-tests
-        run: |
-          yarn
-          yarn cypress run-ct
+        uses: cypress-io/github-action@v2
+        with:
+          command: yarn cypress run-ct
+          wait-on: 'http://localhost:4000/'
