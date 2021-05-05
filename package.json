@@ -1,6 +1,6 @@
 {
   "name": "personal-environment-client",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "scripts": {
     "start": "yarn run relay && react-scripts start",
