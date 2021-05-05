@@ -3,7 +3,7 @@ import { useMutation } from 'react-relay'
 
 export const useConditionalMutationHook = (isNewUser: boolean) => {
   const [commitLogin] = useMutation(graphql`
-    mutation AuthorizeMutationLoginMutation($email: String!, $password: String!) {
+    mutation useConditionalMutationHookLoginMutation($email: String!, $password: String!) {
       login(email: $email, password: $password) {
         token
         user {
@@ -14,7 +14,7 @@ export const useConditionalMutationHook = (isNewUser: boolean) => {
     }
   `)
   const [commitSignup] = useMutation(graphql`
-    mutation AuthorizeMutationSignupMutation(
+    mutation useConditionalMutationHookMutation(
       $name: String!
       $email: String!
       $password: String!

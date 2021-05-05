@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run relay && react-scripts start",
-    "build": "yarn run relay && react-scripts build",
+    "start": "concurrently \"yarn start:api\" \"yarn start:client\" ",
+    "start:client": "yarn relay && react-scripts start",
+    "start:api": "node server/src/server.js",
+    "build": "yarn relay && react-scripts build",
     "relay": "relay-compiler --schema data/schema.graphql --src ./src/ --language typescript",
-    "test": "yarn run cypress open-ct",
-    "test:ci": "yarn run cypress run-ct",
+    "test": "concurrently \"yarn start:api\" \"yarn cypress open-ct\" ",
+    "test:ci": "concurrently \"yarn start:api\" \"yarn cypress run-ct\" ",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "@types/relay-runtime": "^11.0.0",
     "@types/styled-components": "^5.1.9",
     "babel-plugin-relay": "^11.0.2",
+    "concurrently": "^6.0.2",
     "cypress": "^7.2.0",
     "graphql": "^15.5.0",
     "react-router-dom": "^5.2.0",

@@ -3,11 +3,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthorizeMutationLoginMutationVariables = {
+export type useConditionalMutationHookLoginMutationVariables = {
     email: string;
     password: string;
 };
-export type AuthorizeMutationLoginMutationResponse = {
+export type useConditionalMutationHookLoginMutationResponse = {
     readonly login: {
         readonly token: string | null;
         readonly user: {
@@ -16,15 +16,15 @@ export type AuthorizeMutationLoginMutationResponse = {
         } | null;
     } | null;
 };
-export type AuthorizeMutationLoginMutation = {
-    readonly response: AuthorizeMutationLoginMutationResponse;
-    readonly variables: AuthorizeMutationLoginMutationVariables;
+export type useConditionalMutationHookLoginMutation = {
+    readonly response: useConditionalMutationHookLoginMutationResponse;
+    readonly variables: useConditionalMutationHookLoginMutationVariables;
 };
 
 
 
 /*
-mutation AuthorizeMutationLoginMutation(
+mutation useConditionalMutationHookLoginMutation(
   $email: String!
   $password: String!
 ) {
@@ -112,7 +112,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "AuthorizeMutationLoginMutation",
+    "name": "useConditionalMutationHookLoginMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -121,18 +121,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "AuthorizeMutationLoginMutation",
+    "name": "useConditionalMutationHookLoginMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "82ccae1a218da508c7ca7bcba11e9258",
+    "cacheID": "8bab77eb439c9f1437111d8321e8a3d3",
     "id": null,
     "metadata": {},
-    "name": "AuthorizeMutationLoginMutation",
+    "name": "useConditionalMutationHookLoginMutation",
     "operationKind": "mutation",
-    "text": "mutation AuthorizeMutationLoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n"
+    "text": "mutation useConditionalMutationHookLoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'fece15f025d49673d49b0e2a2ec3f6fc';
+(node as any).hash = 'a155f47645f7de4004f044cd4a69cc5e';
 export default node;
