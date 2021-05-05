@@ -28,11 +28,14 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Run server
-      run: npm install
-      run: npm run dev
+    - name: Install server's dependencies
+      run: yarn
       working-directory: ${{env.server-directory}}
+    - name: Run server
+      run: yarn dev
+      working-directory: ${{env.server-directory}}
+    - name: Install client's dependencies
+      run: yarn
     - name: Run tests
-      run: npm install
-      run: npm run test:ci
+      run: yarn test:ci
 
