@@ -7,7 +7,7 @@ import { SERVER_URL } from './constants'
 beforeEach(() => {
   mount(
     <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <AddNewNote setShowAddNote={cy.stub().as('setShowAddNote')} />
+      <AddNewNote setShowAddNote={cy.stub().as('setShowAddNote')} updateCache={cy.stub()} />
     </RelayEnvironmentProvider>
   )
   cy.intercept('POST', SERVER_URL, {
