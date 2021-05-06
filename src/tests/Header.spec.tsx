@@ -27,7 +27,7 @@ it('Route to right path on click on the links', () => {
   cy.location().its('pathname').should('equal', '/')
 
   cy.contains('Logout').click()
-  cy.location().its('pathname').should('equal', '/mock')
+  cy.location().its('pathname').should('equal', '/login')
 })
 
 describe('Should change innertext onclick login button', () => {
