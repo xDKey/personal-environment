@@ -24,6 +24,7 @@ jobs:
         run: yarn start:api &
 
       - name: Run unit-tests
+        working-directory: ./client
         uses: cypress-io/github-action@v2
         with:
           command: yarn cypress run-ct
