@@ -1,28 +1,16 @@
 services:
   client:
-    build: ./
+    build: client/
     restart: always
     ports:
       - 3000:3000
-    volumes:
-      - ./:/client
-      - /client/node_modules
     links:
       - server
-    networks:
-      - appnetwork
+    command: yarn start:client
 
   server:
     build: server/
     restart: always
     ports:
       - 4000:4000
-    volumes:
-      - ./server:/server
-      - /server/node_modules
-    networks:
-      - appnetwork
-
-networks:
-  appnetwork:
-    driver: bridge
+    command: yarn dev

@@ -6,4 +6,4 @@ COPY . /server/
 
 RUN yarn
 
-CMD ["yarn", "dev"]
+CMD [ "yarn", "prisma", "generate"]
