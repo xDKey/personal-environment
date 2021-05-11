@@ -1,9 +1,7 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 WORKDIR /client
 
 COPY . /client/
 
 RUN yarn
-
-CMD ["yarn", "start:client"]
