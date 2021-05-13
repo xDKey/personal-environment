@@ -7,10 +7,8 @@ import type { AddNewNoteMutation as MutationType } from '../gql/mutations/__gene
 
 const AddNewNote = ({
   setShowAddNote,
-  updateCache
 }: {
   setShowAddNote: Dispatch<SetStateAction<boolean>>
-  updateCache: (payload: any) => void
 }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -23,7 +21,6 @@ const AddNewNote = ({
       onCompleted(data) {
         if (data.addNote) {
           setShowAddNote(false)
-          updateCache({newNote: data.addNote})
         }
       },
     })
