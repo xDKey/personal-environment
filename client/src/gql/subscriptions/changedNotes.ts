@@ -1,6 +1,4 @@
-import { graphql } from 'babel-plugin-relay/macro'
-
-const changedNotesSubscription = graphql`
+const changedNotesSubscription = `
   subscription changedNotesSubscription {
     changedNotes {
       id
