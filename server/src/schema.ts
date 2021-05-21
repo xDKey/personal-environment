@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+import { gql } from 'apollo-server'
 
 const typeDefs = gql`
   type User {
@@ -33,7 +33,6 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    updatedUser: User
     changedNotes: Note
   }
 
@@ -42,6 +41,4 @@ const typeDefs = gql`
     user: User
   }
 `
-module.exports = {
-  typeDefs,
-}
+export default typeDefs
